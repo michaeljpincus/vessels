@@ -47,15 +47,25 @@ html, body {
 
 .popup-vessel {
     font-family: 'Roboto Flex';
-    font-weight: 700;
+    font-weight: 400;
     font-size: 20px;
     font-stretch: 50%;
+     display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+
+.popup-flag {
+  width: 20px;
+  height: auto;
+  flex-shrink: 0;
 }
 
 .popup-event {
     font-family: 'Roboto Flex';
     font-size: 18px;
-    font-weight: 300;
+    font-weight: 200;
     font-stretch: 50%;
 }
 
@@ -64,7 +74,7 @@ html, body {
   align-items: center;
   gap: 6px;
   padding: 8px 16px;
-  font: 600 14px/1 system-ui, sans-serif;
+  font-family: 'Roboto Flex';
   color: #fff;
   background: #1f77b4;
   border: none;
