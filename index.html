@@ -1,0 +1,34 @@
+<!DOCTYPE html> 
+<html lang="en">
+    <head>
+        <title>Vessels</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,100..1000&display=swap">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@^6.12.0/dist/maplibre-gl.css" />
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+
+    <body>
+        <div id="map"></div>
+        <div id="panel">
+        <div id="date"></div>
+        <input id="slider" type="range" />
+        <div class="row">
+            <button id="play" class="play-btn" type="button">▶ Play</button>
+            <label><input type="checkbox" id="lastKnown" checked /> Show last known position between events</label>
+        </div>
+        <div class="row">
+            <span><span class="dot" style="background:#1f77b4"></span>Port visit</span>
+            <span><span class="dot" style="background:#d62728"></span>Loitering</span>
+            <span><span class="dot" style="background:#999"></span>Last known location</span>
+        </div>
+</div>
+
+
+        <script type="module" src="js/main.js"></script>
+    </body>

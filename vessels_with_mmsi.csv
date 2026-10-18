@@ -1,0 +1,18 @@
+name,imo,flag,vessel_type,owner,owner_location,main_cargo,period,mmsi
+PARITOSH,9383352,Comoros,asphalt/bitumen tanker,Paritosh Shipping Inc,Marshall Islands,bitumen/asphalt,2026,477003600;518100890;620800211
+BITU,9531765,Panama,asphalt/bitumen tanker,Ornella Shipping Inc,Marshall Islands,bitumen/asphalt,2026,269032000;271048485;352004730;626231000;538009240
+STARWAY,9273246,Panama,,Hechuang International Group,China,naphtha,since 2025,636018295;564194000;352004620;314314000
+GAS LUCKY,9177557,Bahamas,LPG tanker,Shunhang Ship Management Ltd,China,ethylene,since 2025,636011288;352005640;311002319
+G SPRING,9040118,Mongolia,LPG tanker,JLS Dragon Co Ltd,Hong Kong,LPG (to China),since 2021,636010990;621819052;620800480;370204000;456677000;457677000
+KANHA,9308766,Palau,products tanker,Kanha Shipping Inc,Marshall Islands,high sulfur fuel oil (Middle East and India),since 2021,538006101;626083000;511101460;232687000
+KING CHAIN,9277761,Cameroon,oil products tanker,Saint Abundant International Co Limited,UK-registered / China-based,methanol (to China),since 2023,212032000;613561602;307030000;352001103
+POLAR,9050187,Zanzibar,LPG tanker,Terra Nav Shipping Ltd,Marshall Islands,propane/butane (to Pakistan),since 2025,677057400;630001005;352310000;229606000;235004260
+MACKEREL,9234628,Panama,chemical/oil products tanker,Betta Shipping Inc,Marshall Islands,high sulfur fuel oil,since Dec 2025,236204000;255806523;352002500
+GAS MARAKUA,9240421,Sierra Leone,LPG tanker,Makarua Shipping Limited,British Virgin Islands,propane/butane,since late 2025,314327000;477066400;352047000;636023167;667002467
+ZIXUAN,9317298,Vanuatu,LPG tanker,Goddess Shipping Corp,Marshall Islands,propane/butane,since Oct 2025,235098017;351417000;314283000;577723000;405000332;374994000
+AVA 6,9226140,Hong Kong,chemical/oil products tanker,Standwill Shipping Limited,Hong Kong,naphtha,since Sep 2025,477226000;477167619
+TINA 5,9237761,Vanuatu,crude oil tanker,Nostalgia Company Limited,Marshall Islands,crude oil,Aug 2026,403557000;636011567;352001757;577710000
+SOGL,9208227,Comoros,LPG tanker,Gravion Maritime Company,Marshall Islands,propane/butane,since Sep 2025,352004527;620800513;419001186;308663000
+NOBLE SEA,9343118,San Marino,LPG tanker,Brich Shipping Co. Limited,Hong Kong,"ammonia, propane/butane, methanol",since mid-2025 (last: methanol Jun 2026),636013308;268268101;477957500;352006431
+SHENZHEN,9276561,Cameroon,crude oil tanker,Northport Navigation Inc,Marshall Islands,crude oil,since Nov 2025,636021789;240147000;341618001;518999408;629009508;613290000;613290022
+EXFLAME,9294678,Gambia,oil products tanker,Science Ru Trading Co. Limited,Marshall Islands,methanol,since mid-2026,311000500;240296000;629009020;352004861;538009720
