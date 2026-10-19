@@ -3,7 +3,8 @@ import * as maplibregl from 'https://unpkg.com/maplibre-gl@^6.12.0/dist/maplibre
 const map = new maplibregl.Map({
   container: 'map',
   minZoom: 2.5,
-  style: 'https://michaeljpincus.github.io/basemap/basemap.json',
+  center: [ 86.0620157030538, 29.58888729520149],
+  style: 'https://michaeljpincus.github.io/franklin_basemap/basemap.json',
   attributionControl: { compact: true }
 });
 
@@ -42,7 +43,7 @@ const events = geojson.features.map(f => ({
 }));
 
 const DAY = 24 * 3600 * 1000;
-const tMin = Math.min(...events.map(e => e.start));
+const tMin = new Date(2025, 9, 8).getTime()
 const tMax = Math.max(...events.map(e => e.end));
 
 const slider = document.getElementById('slider');
@@ -165,14 +166,16 @@ document.getElementById('lastKnown').addEventListener('change', update);
 let timer = null;
 document.getElementById('play').addEventListener('click', (e) => {
   const btn = e.currentTarget;
+  const label = btn.querySelector('.play-label');
+
   if (timer) {
     clearInterval(timer);
     timer = null;
-    btn.textContent = '▶ Play';
+    label.textContent = 'Play';
     btn.classList.remove('is-playing');
     return;
   }
-  btn.textContent = '⏸ Pause';
+  label.textContent = 'Pause';
   btn.classList.add('is-playing');
   timer = setInterval(() => {
     let v = +slider.value + DAY / 2;
