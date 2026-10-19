@@ -4,9 +4,71 @@ html, body {
     overflow: hidden;
 }
 
+
 :root {
+  --port: #1f77b4;
   --accent: #1f77b4;
+  --loiter: #d62728;
+  --last-known: #838181;
 }
+
+#title-card {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 0px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  font-family: 'Libre Franklin';
+  color: #000;
+  pointer-events: none; /* let map drags pass through */
+}
+
+#title-card .title {
+  margin: 0 0 10px;
+  font-size: clamp(20px, 3vw, 30px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+#title-card .key {
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+}
+
+#title-card .key li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.key-dot {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.key-port   { background: var(--port); }
+.key-loiter { background: var(--loiter); }
+.key-last   { background: var(--last-known); opacity: 0.7; }
+
+#title-card .source {
+  font-size: 14px;
+  font-weight: 300;
+}
+
 
 #slider,
 #lastKnown {
@@ -53,22 +115,26 @@ html, body {
 }
 
 .popup-vessel {
-    font-family: 'Libre Franklin';
-    font-weight: 500;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
+  font-family: 'Libre Franklin';
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.maplibregl-popup {
-  pointer-events: none;
+.popup-vessel span {
+  display: block;
+  line-height: 1;
 }
 
 .popup-flag {
+  display: block;
   width: 20px;
   height: auto;
   flex-shrink: 0;
+  transform: translateY(-.45px);
 }
 
 .popup-event {

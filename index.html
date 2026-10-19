@@ -17,20 +17,29 @@
 
     <body>
         <div id="map"></div>
-        <div id="panel">
-        <div id="date"></div>
-        <input id="slider" type="range" />
-        <div class="row">
-            <button id="play" class="play-btn" type="button">
-                <svg class="play-icon" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
-                    <path class="icon-play" d="M6 4l14 8-14 8z" fill="currentColor"/>
-                    <path class="icon-pause" d="M6 4h4v16H6zM14 4h4v16h-4z" fill="currentColor"/>
-                </svg>
-                <span class="play-label">Play</span>
-            </button>
-            <label><input type="checkbox" id="lastKnown" checked /> Show last known position between events</label>
+        <div id="title-card">
+            <h1 class="title">Tracking Shadow Vessels, Oct 2025-2026</h1>   
+            <ul class="key">
+                <li><span class="key-dot key-port"></span>Port visit</li>
+                <li><span class="key-dot key-loiter"></span>Loitering</li>
+                <li><span class="key-dot key-last"></span>Last known location</li>
+            </ul>
+            <div class="source">Source: Global Fishing Watch</div>
         </div>
-</div>
+        <div id="panel">
+            <div id="date"></div>
+            <input id="slider" type="range" />
+            <div class="row">
+                <button id="play" class="play-btn" type="button">
+                    <svg class="play-icon" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+                        <path class="icon-play" d="M6 4l14 8-14 8z" fill="currentColor"/>
+                        <path class="icon-pause" d="M6 4h4v16H6zM14 4h4v16h-4z" fill="currentColor"/>
+                    </svg>
+                    <span class="play-label">Play</span>
+                </button>
+                <label><input type="checkbox" id="lastKnown" checked /> Show last known position between events</label>
+            </div>
+        </div>
 
 
         <script type="module" src="js/main.js"></script>
