@@ -3,7 +3,7 @@ import * as maplibregl from 'https://unpkg.com/maplibre-gl@^6.12.0/dist/maplibre
 const map = new maplibregl.Map({
   container: 'map',
   minZoom: 2.5,
-  center: [ 86.0620157030538, 29.58888729520149],
+  center: [ 58.6508212580619, 23.3024588377676], 
   style: 'https://michaeljpincus.github.io/franklin_basemap/basemap.json',
   attributionControl: { compact: true }
 });

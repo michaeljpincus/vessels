@@ -1,9 +1,9 @@
 html, body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
 }
-
 
 :root {
   --port: #1f77b4;
@@ -12,29 +12,29 @@ html, body {
   --last-known: #838181;
 }
 
+/* ---------- Map ---------- */
+
+#map {
+  height: 100vh;
+  height: 100dvh;   /* actual visible height on mobile; falls back to vh */
+  width: 100%;
+}
+
+/* ---------- Header ---------- */
+
 #title-card {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  box-sizing: border-box;          /* so width: 100% + padding doesn't overflow */
-  padding: 10px 16px 10px;
+  box-sizing: border-box;   /* so width: 100% + padding doesn't overflow */
+  padding: calc(10px + env(safe-area-inset-top)) 16px 10px;
   background: rgba(255, 255, 255, 0.95);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   font-family: 'Libre Franklin';
   color: #000;
-  pointer-events: none;
+  pointer-events: none;     /* let map drags pass through */
 }
-
-#title-card .meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 6px 24px;
-}
-
-
 
 #title-card .title {
   margin: 0 0 2px;
@@ -43,8 +43,6 @@ html, body {
   line-height: 1.1;
   letter-spacing: -0.01em;
 }
-
-
 
 #title-card .subtitle {
   margin: 0 0 8px;
@@ -71,12 +69,6 @@ html, body {
   line-height: 1;
 }
 
-#title-card .source {
-  font-size: 12px;
-  font-weight: 300;
-  color: #777;
-}
-
 .key-dot {
   display: block;
   width: 12px;
@@ -85,11 +77,17 @@ html, body {
   flex-shrink: 0;
 }
 
+.key-port   { background: var(--port); }
+.key-loiter { background: var(--loiter); }
+.key-last   { background: var(--last-known); opacity: 0.7; }
+
+/* ---------- Footer ---------- */
+
 #footer {
   position: absolute;
   left: 0;
   bottom: 0;
-  padding: 3px 10px;
+  padding: 3px 10px calc(3px + env(safe-area-inset-bottom));
   font-family: 'Libre Franklin';
   font-size: 12px;
   font-weight: 300;
@@ -99,54 +97,56 @@ html, body {
   pointer-events: none;
 }
 
-.key-port   { background: var(--port); }
-.key-loiter { background: var(--loiter); }
-.key-last   { background: var(--last-known); opacity: 0.7; }
-
+/* ---------- Timeline panel ---------- */
 
 #slider,
 #lastKnown {
   accent-color: var(--accent);
 }
 
-#map {
-    height: 100vh;
-    width: 100%
-}
-
 #panel {
-    position: absolute; left: 12px; right: 12px; bottom: 24px; max-width: 640px;
-    margin: auto; background: rgba(255,255,255,.95); padding: 12px 16px;
-    border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.25);
-}
-#date { 
-    font-weight: 700; 
-    margin-bottom: 6px; 
-    font-size: 25px;
-    font-family: 'Libre Franklin';
-}
-
-#slider { 
-    width: 100%; 
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: calc(32px + env(safe-area-inset-bottom));   /* clears the footer */
+  max-width: 640px;
+  margin: auto;
+  background: rgba(255, 255, 255, .95);
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
 }
 
-.row { 
-    display: flex; 
-    gap: 12px; 
-    align-items: center; 
-    font-size: 15px; 
-    margin-top: 6px; 
-    font-family: 'Libre Franklin';
-    font-weight: 300;
+#date {
+  font-weight: 700;
+  margin-bottom: 6px;
+  font-size: 25px;
+  font-family: 'Libre Franklin';
 }
 
-.dot { 
-    display:inline-block; 
-    width:10px; 
-    height:10px; 
-    border-radius:50%; 
-    margin-right:4px; 
+#slider {
+  width: 100%;
 }
+
+.row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 15px;
+  margin-top: 6px;
+  font-family: 'Libre Franklin';
+  font-weight: 300;
+}
+
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+/* ---------- Popup ---------- */
 
 .popup-vessel {
   font-family: 'Libre Franklin';
@@ -172,10 +172,12 @@ html, body {
 }
 
 .popup-event {
-    font-family: 'Libre Franklin';
-    font-size: 18px;
-    font-weight: 300;
+  font-family: 'Libre Franklin';
+  font-size: 18px;
+  font-weight: 300;
 }
+
+/* ---------- Play button ---------- */
 
 .play-btn {
   display: inline-flex;
