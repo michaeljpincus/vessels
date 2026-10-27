@@ -20,13 +20,15 @@
     <body>
         <div id="map"></div>
         <div id="title-card">
-            <h1 class="title">Tracking Shadow Vessels, Oct 2025-2026</h1>   
-            <ul class="key">
-                <li><span class="key-dot key-port"></span>Port visit</li>
-                <li><span class="key-dot key-loiter"></span>Loitering</li>
-                <li><span class="key-dot key-last"></span>Last known location</li>
-            </ul>
-            <div class="source">Source: Global Fishing Watch</div>
+            <h1 class="title">Tracking the Shadow Fleet, Oct 2025-2026</h1>
+            <p class="subtitle">Click on a vessel to follow it through time</p>
+            <div class="meta">
+                <ul class="key">
+                    <li><span class="key-dot key-port"></span>Port visit</li>
+                    <li><span class="key-dot key-loiter"></span>Loitering</li>
+                    <li><span class="key-dot key-last"></span>Last known location</li>
+                </ul>
+            </div>
         </div>
         <div id="panel">
             <div id="date"></div>
@@ -42,6 +44,8 @@
                 <label><input type="checkbox" id="lastKnown" checked /> Show last known position between events</label>
             </div>
         </div>
+
+        <footer id="footer">Source: Global Fishing Watch</footer>
 
 
         <script type="module" src="js/main.js"></script>

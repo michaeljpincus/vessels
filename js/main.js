@@ -43,7 +43,7 @@ const events = geojson.features.map(f => ({
 }));
 
 const DAY = 24 * 3600 * 1000;
-const tMin = new Date(2025, 9, 8).getTime()
+const tMin = new Date(2025, 9, 8).getTime();
 const tMax = Math.max(...events.map(e => e.end));
 
 const slider = document.getElementById('slider');
@@ -87,6 +87,51 @@ function positionsAt(t, includeLastKnown) {
   return { type: 'FeatureCollection', features };
 }
 
+// ---------- Popup helpers ----------
+
+function popupHTML(p) {
+  return `
+    <div class="popup-vessel">
+      ${p.flag_url ? `<img class="popup-flag" src="${p.flag_url}" alt="" onerror="this.remove()">` : ''}
+      <span>${properName(p.vessel)}</span>
+    </div>
+    <div class="popup-event">
+      ${p.flag ? sentenceCase(p.flag) : ''} (${sentenceCase(p.status).toLowerCase()})
+    </div>
+  `;
+}
+
+let selectedImo = null;
+let selectedKey = null;
+const selectedPopup = new maplibregl.Popup({ closeButton: false, closeOnClick: false });
+
+function clearSelection() {
+  selectedImo = null;
+  selectedKey = null;
+  selectedPopup.remove();
+}
+
+// Move/refresh the selected popup to match the current data
+function syncSelectedPopup(data) {
+  if (selectedImo == null) return;
+
+  const f = data.features.find(f => String(f.properties.imo) === selectedImo);
+  if (!f) {            // vessel not visible at this time -> hide, but keep selection
+    selectedPopup.remove();
+    selectedKey = null;
+    return;
+  }
+
+  selectedPopup.setLngLat(f.geometry.coordinates);
+
+  const key = `${f.properties.imo}|${f.properties.status}|${f.properties.event_type}`;
+  if (key !== selectedKey) {   // only rebuild HTML when something changed
+    selectedKey = key;
+    selectedPopup.setHTML(popupHTML(f.properties));
+  }
+  if (!selectedPopup.isOpen()) selectedPopup.addTo(map);
+}
+
 // ---------- Map ----------
 
 map.on('load', () => {
@@ -115,36 +160,47 @@ map.on('load', () => {
     },
   });
 
-  const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false });
+  // Hover popup (skipped for the selected vessel, which already has one)
+  const hoverPopup = new maplibregl.Popup({ closeButton: false, closeOnClick: false });
   let hoverKey = null;
 
   map.on('mousemove', 'vessels', (e) => {
     map.getCanvas().style.cursor = 'pointer';
     const p = e.features[0].properties;
 
-    popup.setLngLat(e.lngLat);
+    if (String(p.imo) === selectedImo) {
+      hoverPopup.remove();
+      hoverKey = null;
+      return;
+    }
+
+    hoverPopup.setLngLat(e.lngLat);
 
     // Only rebuild the HTML when the ship or its state changes (avoids flag flicker)
     const key = `${p.imo}|${p.status}|${p.event_type}`;
     if (key !== hoverKey) {
       hoverKey = key;
-      popup.setHTML(`
-        <div class="popup-vessel">
-          ${p.flag_url ? `<img class="popup-flag" src="${p.flag_url}" alt="" onerror="this.remove()">` : ''}
-          <span>${properName(p.vessel)}</span>
-        </div>
-        <div class="popup-event">
-          ${p.flag ? sentenceCase(p.flag) : ''} (${sentenceCase(p.status).toLowerCase()})
-        </div>
-      `);
+      hoverPopup.setHTML(popupHTML(p));
     }
-    popup.addTo(map);
+    hoverPopup.addTo(map);
   });
 
   map.on('mouseleave', 'vessels', () => {
     map.getCanvas().style.cursor = '';
     hoverKey = null;
-    popup.remove();
+    hoverPopup.remove();
+  });
+
+  // Click a dot to select it; click empty map to deselect
+  map.on('click', (e) => {
+    const hits = map.queryRenderedFeatures(e.point, { layers: ['vessels'] });
+    if (!hits.length) return clearSelection();
+
+    selectedImo = String(hits[0].properties.imo);
+    selectedKey = null;
+    hoverPopup.remove();
+    hoverKey = null;
+    update();   // positions + shows the popup immediately
   });
 
   update();
@@ -155,9 +211,10 @@ map.on('load', () => {
 function update() {
   const t = +slider.value;
   document.getElementById('date').textContent = fmt.format(t);
-  map.getSource('vessels')?.setData(
-    positionsAt(t, document.getElementById('lastKnown').checked)
-  );
+
+  const data = positionsAt(t, document.getElementById('lastKnown').checked);
+  map.getSource('vessels')?.setData(data);
+  syncSelectedPopup(data);
 }
 
 slider.addEventListener('input', update);
