@@ -212,9 +212,12 @@ function update() {
   const t = +slider.value;
   document.getElementById('date').textContent = fmt.format(t);
 
+  // fill the slider track up to the current position
+  slider.style.setProperty('--pct', `${((t - tMin) / (tMax - tMin)) * 100}%`);
+
   const data = positionsAt(t, document.getElementById('lastKnown').checked);
   map.getSource('vessels')?.setData(data);
-  syncSelectedPopup(data);
+  syncSelectedPopup(data);   // keep the selected vessel's popup on its current position
 }
 
 slider.addEventListener('input', update);
